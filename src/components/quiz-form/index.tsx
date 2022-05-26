@@ -1,4 +1,4 @@
-import { Form, Button, Radio, Typography } from 'antd';
+import { Form, Button, Radio, Typography, Checkbox, Col, Row } from 'antd';
 
 import { useQuiz } from 'components/_context/quiz';
 
@@ -63,6 +63,24 @@ const QuizForm = (): JSX.Element => {
                       );
                     })}
                   </Radio.Group>
+                </Form.Item>
+              )}
+              {question.answerType === 'multiple' && (
+                <Form.Item name={question.id}>
+                  <Checkbox.Group
+                    onChange={(e) => onChange(question.id, e)}
+                    value={value[question.id]}
+                  >
+                    <Row>
+                      {question.options.map((answer: any, index: number) => {
+                        return (
+                          <Col span={8} key={index}>
+                            <Checkbox value={answer}>{answer}</Checkbox>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Checkbox.Group>
                 </Form.Item>
               )}
             </div>

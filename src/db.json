@@ -36,5 +36,12 @@
     "answerType": "single",
     "options": ["Mr. Krabs", "Mr. Cheeks", "Mr. Spud", "Master Splinter"],
     "answer": "Master Splinter"
+  },
+  {
+    "id": "ewporuqwe5",
+    "answerType": "multiple",
+    "question": "Which of the following is NOT a color of the rainbow?",
+    "options": ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"],
+    "answer": ["Red", "Yellow", "Green"]
   }
 ]
