@@ -10,10 +10,14 @@ export const pickRandomQuestions = (
   numberOfQuestions: number,
   quizQuestions: IQuizQuestion[]
 ): IQuizQuestion[] => {
-  const randomQuestions = [];
+  const randomQuestions: IQuizQuestion[] = [];
   for (let i = 0; i < numberOfQuestions; i++) {
     const randomQuestion = pickRandomQuestion(quizQuestions);
-    randomQuestions.push(randomQuestion);
+    // check if the question is already in the array
+    if (randomQuestions.find((question) => question.id === randomQuestion.id)) {
+      // if it is, then we need to pick another question
+      i--;
+    } else randomQuestions.push(randomQuestion);
   }
   return randomQuestions;
 };

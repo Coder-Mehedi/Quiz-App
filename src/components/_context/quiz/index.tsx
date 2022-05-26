@@ -29,10 +29,10 @@ function QuizProvider({ children }: { children: ReactNode }) {
   );
   useEffect(() => {
     quizQuestions.length === 0 &&
-      // setQuizQuestions(
-      //   pickRandomQuestions(NUMBER_OF_QUESTIONS_TO_SHOW, quizQuestionsData)
-      // );
-      setQuizQuestions(quizQuestionsData);
+      setQuizQuestions(
+        pickRandomQuestions(NUMBER_OF_QUESTIONS_TO_SHOW, quizQuestionsData)
+      );
+    // setQuizQuestions(quizQuestionsData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
