@@ -1,3 +1,4 @@
+import { QuizProvider } from 'components/_context/quiz';
 import type { NextPage } from 'next';
 // dynamic import
 import dynamic from 'next/dynamic';
@@ -9,7 +10,9 @@ const QuizForm = dynamic(() => import('../src/components/form'), {
 const Home: NextPage = () => {
   return (
     <Layout>
-      <QuizForm />
+      <QuizProvider>
+        <QuizForm />
+      </QuizProvider>
     </Layout>
   );
 };

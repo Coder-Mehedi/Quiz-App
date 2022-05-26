@@ -1,50 +1,17 @@
-import { Form, Button, Radio, RadioChangeEvent, Typography } from 'antd';
-import { useEffect } from 'react';
-import quizQuestionsData from 'db.json';
-import useLocalStorage from '_hooks/use-local-storage';
-import { IQuizQuestion } from 'utils/interfaces';
-import { pickRandomQuestions } from 'utils/pick-random-questions';
+import { Form, Button, Radio, Typography } from 'antd';
 
-const NUMBER_OF_QUESTIONS_TO_SHOW = 3;
+import { useQuiz } from 'components/_context/quiz';
 
 const QuizForm = (): JSX.Element => {
-  const [quizQuestions, setQuizQuestions] = useLocalStorage<IQuizQuestion[]>(
-    'questions',
-    []
-  );
-  useEffect(() => {
-    quizQuestions.length === 0 &&
-      setQuizQuestions(
-        pickRandomQuestions(NUMBER_OF_QUESTIONS_TO_SHOW, quizQuestionsData)
-      );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const [value, setValue] = useLocalStorage<any>('value', {});
-  const [correctAnswers, setCorrectAnswers] = useLocalStorage<IQuizQuestion[]>(
-    'correctAnswers',
-    []
-  );
-  const [wrongAnswers, setWrongAnswers] = useLocalStorage<IQuizQuestion[]>(
-    'wrongAnswers',
-    []
-  );
-
-  const onFinish = (values: any) => {
-    const correctAnswers = quizQuestions.filter(
-      (question: IQuizQuestion) => question.answer === values[question.id]
-    );
-    const wrongAnswers = quizQuestions.filter(
-      (question: IQuizQuestion) => question.answer !== values[question.id]
-    );
-    setCorrectAnswers(correctAnswers);
-    setWrongAnswers(wrongAnswers);
-  };
-
-  const onChange = (id: string, e: RadioChangeEvent) => {
-    setValue((prev: any) => ({ ...prev, [id]: e.target.value }));
-  };
-  const isSumitted = correctAnswers.length > 0 || wrongAnswers.length > 0;
+  const {
+    quizQuestions,
+    correctAnswers,
+    wrongAnswers,
+    value,
+    isSumitted,
+    onChange,
+    onFinish,
+  } = useQuiz();
 
   return (
     <>
