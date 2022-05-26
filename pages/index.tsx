@@ -1,9 +1,8 @@
 import { QuizProvider } from 'components/_context/quiz';
+import Layout from 'components/_root/layout';
 import type { NextPage } from 'next';
-// dynamic import
 import dynamic from 'next/dynamic';
-import Layout from '_root/layout';
-const QuizForm = dynamic(() => import('../src/components/form'), {
+const QuizForm = dynamic(() => import('../src/components/quiz-form'), {
   ssr: false,
 });
 
